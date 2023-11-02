@@ -1,57 +1,47 @@
 The content below is an example project proposal / requirements document. Replace the text below the lines marked "__TODO__" with details specific to your project. Remove the "TODO" lines.
 
-(__TODO__: your project name)
-
-# Shoppy Shoperson 
+# Blackjack Solver
 
 ## Overview
 
-(__TODO__: a brief one or two paragraph, high-level description of your project)
+Blackjack is an American classic card game that notoriously causes massive variance swings for gamblers across all casinos. Glorified by movies and unrealistic internet personalities, the simply game has been misconstrued to be "easy" and "profitable". Unfortunately, without the proper training, this is not the case.
 
-Remembering what to buy at the grocery store is waaaaay too difficult. Also, shopping for groceries when you're hungry leads to regrettable purchases. Sooo... that's where Shoppy Shoperson comes in!
-
-Shoppy Shoperson is a web app that will allow users to keep track of multiple grocery lists. Users can register and login. Once they're logged in, they can create or view their grocery list. For every list that they have, they can add items to the list or cross off items.
-
+Welcome to your personal Blackjack Solver, a simple application designed to "solve" for basic strategy. Basic strategy is the fundamental skill-level all blackjack players need to "lose the least" in casinos. This solver, given any scenario of hands and cards, will provide the optimal basic strategy answer as well as a reason behind the action. We will also offer a practice run of inputted hands to test for previously inquired hands.
 
 ## Data Model
 
-(__TODO__: a description of your application's data and their relationships to each other) 
+The application will store Hands, Practice Status and Reasons
 
-The application will store Users, Lists and Items
+* each hand will have to opportunity to be "practiced" via the Practice page
+* reasons will be given per input, then stored with the hand history
 
-* users can have multiple lists (via references)
-* each list can have multiple items (by embedding)
-
-(__TODO__: sample documents)
-
-An Example User:
+Hand Example:
 
 ```javascript
 {
-  username: "shannonshopper",
-  hash: // a password hash,
-  lists: // an array of references to List documents
+  dealerHand: 6,
+  playerHand: "A7",
+  value: 18,
+  soft: true,
+  action: "double",
+  reason: "Soft hands from A2 - A8 are always a double facing a dealer 6"
 }
 ```
 
-An Example List with Embedded Items:
+Hand History Example with Embedded Items:
 
 ```javascript
 {
-  user: // a reference to a User object
-  name: "Breakfast foods",
-  items: [
-    { name: "pancakes", quantity: "9876", checked: false},
-    { name: "ramen", quantity: "2", checked: true},
-  ],
-  createdAt: // timestamp
+  hand:  // a reference to a Hand object
+  number: //number
+  hand: [
+    { dealerHand: 6, playerhand: "A7", value: 18, soft: true, action: "double", reason: "Soft hands from A2 - A8 are always a double facing a dealer 6"}
+  ]
 }
 ```
 
 
 ## [Link to Commented First Draft Schema](db.mjs) 
-
-(__TODO__: create a first draft of your Schemas in db.mjs and link to it)
 
 ## Wireframes
 
