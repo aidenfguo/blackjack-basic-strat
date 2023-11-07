@@ -1,6 +1,8 @@
 import express from 'express'
 import path from 'path'
 import { fileURLToPath } from 'url';
+import mongoose from 'mongoose'
+
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
