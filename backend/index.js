@@ -14,11 +14,10 @@ app.use(express.urlencoded({ extended: false }));
 //for now, use HBS to show proof of concept
 import url from 'url';
 import path from 'path';
-const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
+export const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'hbs');
 
-export default app;
 
 
 app.get('/',(req, res) => {
@@ -128,7 +127,7 @@ app.put('/handHistory/:id', async(req,res)=>{
     }
 });
 
-mongoose
+ mongoose
     .connect(mongoDBURL)
     .then(() =>{
     console.log('Connected to DB');
@@ -139,3 +138,5 @@ mongoose
 .catch((error) => {
     console.log(error);
 });
+
+export default app;
