@@ -17,7 +17,7 @@ import path, { dirname } from 'path';
 export const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'hbs');
-//console.log(__dirname);
+console.log(__dirname);
 app.set('views', __dirname + '/views');
 
 
