@@ -3,6 +3,7 @@ import mongoose, { mongo } from "mongoose";
 import { PORT, mongoDBURL } from "./config.js";
 import {Hand} from './db.mjs';
 import handRoute from './routes/handRoute.js';
+import './config.js'
 import cors from 'cors';
 //const Hand = mongoose.model('Hand');
 
