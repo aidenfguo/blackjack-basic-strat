@@ -24,6 +24,7 @@ app.set('views', __dirname + '/views');
 
 app.get('/',(req, res) => {
     //console.log(req);
+    console.log(__dirname);
     Hand.find().then((hand)=>{
         console.log("HI IM HERE PRINTING HAND", hand);
         res.render("home", {Hands: hand});
