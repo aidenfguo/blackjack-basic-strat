@@ -8,6 +8,8 @@ import path from 'path';
 //const Hand = mongoose.model('Hand');
 
 const app = express();
+const path = require('path');
+
 app.use(express.urlencoded({ extended: false }));
 
 
