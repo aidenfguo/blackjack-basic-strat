@@ -131,11 +131,11 @@ app.put('/handHistory/:id', async(req,res)=>{
 });
 
  mongoose
-    .connect(mongoDBURL)
+    .connect(process.env.mongoDBURL)
     .then(() =>{
     console.log('Connected to DB');
-    app.listen(PORT, () =>{
-        console.log(`App is listening to port ${PORT}`);
+    app.listen(process.env.PORT, () =>{
+        console.log(`App is listening to port ${process.env.PORT}`);
     });
 })
 .catch((error) => {
