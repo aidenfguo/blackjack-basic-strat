@@ -1,6 +1,5 @@
 import express from "express";
 import mongoose, { mongo } from "mongoose";
-import { PORT, mongoDBURL } from "./config.js";
 import {Hand} from './db.mjs';
 import handRoute from './routes/handRoute.js';
 import './config.js'
@@ -15,11 +14,11 @@ app.use(express.urlencoded({ extended: false }));
 //for now, use HBS to show proof of concept
 import url from 'url';
 import path, { dirname } from 'path';
-//export const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
+export const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 app.set('view engine', 'hbs');
-const __dirname = "/backend/views";
+//const __dirname = "/backend/views";
 console.log(__dirname);
-app.set('views',__dirname);
+app.set('views',__dirname + '/views');
 app.use(express.static(__dirname + "public"));
 
 
@@ -28,7 +27,7 @@ app.use(express.static(__dirname + "public"));
 app.get('/',(req, res) => {
     console.log(__dirname);
     Hand.find().then((hand)=>{
-        res.render("home.hbs", {Hands: hand});
+        res.render("home", {Hands: hand});
     })
     //res.render("home");
 
