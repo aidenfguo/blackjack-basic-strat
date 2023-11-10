@@ -27,7 +27,7 @@ app.use(express.static(__dirname + "public"));
 app.get('/',(req, res) => {
     console.log(__dirname);
     Hand.find().then((hand)=>{
-        res.render("home", {Hands: hand});
+        res.render("home.hbs", {Hands: hand});
     })
     //res.render("home");
 
