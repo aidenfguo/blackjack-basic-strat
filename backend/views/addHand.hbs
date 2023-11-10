@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <h1>Add Hand</h1>
+  <form action="/handHistory/addHand" method="post">
+
+
+    <label for="dealerHand">Dealer Shows:</label>
+    <input type="text" id="dealerHand" name="dealerHand" required><br><br>
+
+
+    <label for="playerHand">Player Card A:</label>
+    <select type = "option" id="playerCardA" name="playerCardA" required>
+      <option value = "A"> A </option>
+      <option value = "K"> K </option>
+      <option value = "Q"> Q </option>
+      <option value = "J"> T </option>
+      <option value = "9"> 9 </option>
+      <option value = "8"> 8 </option>
+      <option value = "7"> 7 </option>
+      <option value = "6"> 6 </option>
+      <option value = "5"> 5 </option>
+      <option value = "4"> 4 </option>
+      <option value = "3"> 3 </option>
+      <option value = "2"> 2 </option>
+    </select>
+        <label for="playerHand">Card B:</label>
+    <select type = "option" id="playerCardB" name="playerCardB" required>
+      <option value = "A"> A </option>
+      <option value = "K"> K </option>
+      <option value = "Q"> Q </option>
+      <option value = "J"> T </option>
+      <option value = "9"> 9 </option>
+      <option value = "8"> 8 </option>
+      <option value = "7"> 7 </option>
+      <option value = "6"> 6 </option>
+      <option value = "5"> 5 </option>
+      <option value = "4"> 4 </option>
+      <option value = "3"> 3 </option>
+      <option value = "2"> 2 </option>
+    </select><br><br> 
+
+
+    <label for="hit">Hit</label>
+    <input type="checkbox" id="hit" name="action" value="hit">
+
+    <label for="split">Split</label>
+    <input type="checkbox" id="split" name="action" value="split">
+
+    <label for="double">Double</label>
+    <input type="checkbox" id="double" name="action" value="double">
+
+    <label for="stand">Stand</label>
+    <input type="checkbox" id="stand" name="action" value="stand">
+
+    <label for="surrender">Surrender</label>
+    <input type="checkbox" id="surrender" name="action" value="surrender">
+    <br><br> 
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>
