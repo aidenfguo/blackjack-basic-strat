@@ -50,6 +50,7 @@ app.use(cors({
     origin: ["https://deploy-mern-1whq.vercel.app"],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type'],
+    credentials: true
     })
 );
 
