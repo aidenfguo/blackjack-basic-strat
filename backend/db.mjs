@@ -5,8 +5,7 @@ import mongoose from 'mongoose'
 const HandSchema = new mongoose.Schema({
     dealerHand: String,
     playerCardA: String,
-    playerCardB: String,
-    action: String,
+    playerCardB: String
 });
 
 export const Hand = mongoose.model('Hand', HandSchema);

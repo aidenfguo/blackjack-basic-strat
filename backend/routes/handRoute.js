@@ -8,9 +8,7 @@ router.post('/', async(req, res)=>{
 });
 
 router.get('/', async(req, res)=>{
-    // Hand.find().then((hand)=>{
-    //     res.render("home", {Hands: hand});
-    // })
+
 });
 
 router.get('/:id', async(req, res)=>{

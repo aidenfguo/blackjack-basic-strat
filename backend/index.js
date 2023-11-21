@@ -17,7 +17,7 @@ import path, { dirname } from 'path';
 export const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 app.set('view engine', 'hbs');
 //const __dirname = "/backend/views";
-console.log(__dirname);
+//console.log(__dirname);
 app.set('views',__dirname + '/views');
 app.use(express.static(__dirname + "public"));
 
@@ -25,7 +25,7 @@ app.use(express.static(__dirname + "public"));
 
 
 app.get('/',(req, res) => {
-    console.log(__dirname);
+    //console.log(__dirname);
     Hand.find().then((hand)=>{
         res.render("home", {Hands: hand});
     })
@@ -46,6 +46,13 @@ app.get('/handHistory/addHand', (req,res)=>{
     const savedReview = await newHand.save();
     res.redirect('/');
   });
+
+app.get('/handHistory/test', (req,res) => {
+    console.log(req.body);
+    Hand.find().then((hand)=>{
+        res.render("test", {Hands: hand});
+    });
+});
 
 
 //app.use(cors());
@@ -91,6 +98,24 @@ app.get('/clearData', async (req, res) =>{
     await Hand.deleteMany({});
     res.redirect('/');
 })
+
+app.post('/handHistory/test', async (req, res) => {
+    try{
+        if(!req.body.dealerHand){ 
+            return res.status(400).send({
+            message: 'Hand History Invalid',
+        });
+    }
+
+    // const newHand = new Hand(req.body)
+    // console.log("Inputted hand", newHand);
+    // const savedHand = await newHand.save();
+    return res.redirect('/handHistory/test');
+}catch(error){
+    console.log(error.message);
+    response.status(500).send({message: error.message});
+}
+});
 
 app.delete('/handHistory/:id', async (req, res) => {
     try{
