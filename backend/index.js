@@ -17,9 +17,6 @@ import path, { dirname } from 'path';
 export const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 app.set('view engine', 'hbs');
 
-console.log(__dirname);
-
-
 //const __dirname = "/backend/views";
 //console.log(__dirname);
 app.set('views',__dirname + '/views');
@@ -52,7 +49,7 @@ app.get('/handHistory/addHand', (req,res)=>{
   app.post('/handHistory/addHand', async (req, res) => {
     
     const newHand = new Hand(req.body);
-    console.log(newHand);
+    //console.log(newHand);
     const savedReview = await newHand.save();
     res.redirect('/');
   });
