@@ -5,7 +5,6 @@ import handRoute from './routes/handRoute.js';
 import './config.js'
 import cors from 'cors';
 import basicAuth from 'express-basic-auth';
-//const Hand = mongoose.model('Hand');
 
 const app = express();
 app.use(express.urlencoded({ extended: false }));
@@ -15,9 +14,7 @@ import path, { dirname } from 'path';
 export const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 app.set('view engine', 'hbs');
 
-//const __dirname = "/backend/views";
-//console.log(__dirname);
-app.set('views', path.join(__dirname, 'project', 'views'));
+app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(__dirname + "/public"));
 
 
@@ -49,13 +46,6 @@ app.get('/', async (req, res) => {
         res.status(500).send({ message: error.message });
     }
 });
-
-// app.get('/',(req, res) => {
-//     Hand.find().then((hand)=>{
-//         res.render("home", {Hands: hand});
-//     })
-// });
-
 
 app.get('/handHistory/addHand', (req,res)=>{
     res.render('addHand');
