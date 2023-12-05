@@ -16,10 +16,20 @@ import url from 'url';
 import path, { dirname } from 'path';
 export const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 app.set('view engine', 'hbs');
+
+console.log(__dirname);
+
+
 //const __dirname = "/backend/views";
 //console.log(__dirname);
 app.set('views',__dirname + '/views');
-app.use(express.static(__dirname + "public"));
+app.use(express.static(__dirname + "/public"));
+//app.use('/styles', express.static(path.join(__dirname, 'styles', 'styles')));
+//console.log(path.join(__dirname, 'styles'));
+app.get('/css/styles.css', (req, res) => {
+    res.setHeader('Content-Type', 'text/css');
+    res.sendFile(__dirname + '/public/css/styles.css');
+  });
 
 
 
@@ -48,8 +58,8 @@ app.get('/handHistory/addHand', (req,res)=>{
   });
 
 app.get('/handHistory/test', (req,res) => {
-    console.log(req.body);
     Hand.find().then((hand)=>{
+        const handsJson = JSON.stringify(hands);
         res.render("test", {Hands: hand});
     });
 });

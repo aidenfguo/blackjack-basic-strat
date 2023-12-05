@@ -8,10 +8,23 @@
 
 
     <label for="dealerHand">Dealer Shows:</label>
-    <input type="text" id="dealerHand" name="dealerHand" required><br><br>
+    <select type = "option" id="dealerHand" name="dealerHand" required>
+      <option value = "A"> A </option>
+      <option value = "K"> K </option>
+      <option value = "Q"> Q </option>
+      <option value = "J"> T </option>
+      <option value = "9"> 9 </option>
+      <option value = "8"> 8 </option>
+      <option value = "7"> 7 </option>
+      <option value = "6"> 6 </option>
+      <option value = "5"> 5 </option>
+      <option value = "4"> 4 </option>
+      <option value = "3"> 3 </option>
+      <option value = "2"> 2 </option>
+    </select>    <br><br>
 
 
-    <label for="playerHand">Player Card A:</label>
+    <label for="playerCardA">Player Card A:</label>
     <select type = "option" id="playerCardA" name="playerCardA" required>
       <option value = "A"> A </option>
       <option value = "K"> K </option>
@@ -26,7 +39,7 @@
       <option value = "3"> 3 </option>
       <option value = "2"> 2 </option>
     </select>
-        <label for="playerHand">Card B:</label>
+        <label for="playerCardB">Card B:</label>
     <select type = "option" id="playerCardB" name="playerCardB" required>
       <option value = "A"> A </option>
       <option value = "K"> K </option>
