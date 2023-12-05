@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <link rel="stylesheet" href="../css/styles.css">   
+    <title>Solutions</title>
+</head>
+    <h2>Hands</h2>
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>Dealer Hand</th>
+                <th>Player Card 1</th>
+                <th>Player Card 2</th>
+                <th>Action</th>
+                <th>Reason</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each Hands}}
+            <tr>
+                <td>{{ this.dealerHand }}</td>
+                <td>{{ this.playerCardA }}</td>
+                <td>{{ this.playerCardB }}</td>
+                <td id="solutionCell_{{@index}}">
+                <button onclick="getSolution('{{this.dealerHand}}', '{{this.playerCardA}}','{{this.playerCardB}}', {{@index}})">Get Solution</button>
+                </td>
+                <td id="reasonCell_{{@index}}">
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <br></br>
+
+      <script>
+
+    function getSolution(dealerHand, playerCardA, playerCardB, index) {
+            const solutionCell = document.getElementById(`solutionCell_${index}`);
+            const reasonCell = document.getElementById(`reasonCell_${index}`);
+            const displayAction = checkAnswers(dealerHand, playerCardA, playerCardB);
+            const displayReason = giveReason(dealerHand, playerCardA, playerCardB);
+            solutionCell.innerHTML = `${displayAction}`;
+            reasonCell.innerHTML = `${displayReason}`;
+    }
+
+    function giveReason(dealerHand, playerCardA, playerCardB){
+        let correctReason = ``;
+        handTotal = calculateTotal(playerCardA, playerCardB);
+        if(handTotal > 18){
+            correctReason = `ALWAYS stand a 19 and 20!`;
+        }
+        else if(handTotal == 11){
+            correctReason = `ALWAYS double your 11s!`;
+        }
+        else if(handTotal == 10 && dealerHand <10){
+            correctReason = `Double 10s against anything below a Dealer 10`;
+        }
+        else if(dealerHand == 2){
+            if(handTotal == 12 || handTotal == 13){
+                correctReason = `Close, but hit. Many cards can help`;
+            }
+            else{
+                correctReason = `More cards hurt than help`
+            }
+        }
+        else if(dealerHand == 6 || dealerHand == 5){
+            if(playerCardA == 'A' || playerCardB == 'A'){
+                correctReason = `Double all soft hands against 5 and 6`;
+            }
+        }
+        else if(handTotal == 9){
+            correctReason = `Double 9s against 3-6s, hit on other cards`;
+        }
+        else if(playerCardA == 8 || playerCardB == 8){
+            correctReason= `ALWAYS split 88!`;
+        }
+        else if(playerCardA == 9 && playerCardB == 9){
+            correctReason= `Split 99 vs all cards except 10s+ and 7`;
+        }
+        else if(playerCardA == playerCardB && playerCardA == 'A'){
+            correctReason = `ALWAYS split your aces!`;
+        }
+        else if(playerCardA == playerCardB && (dealerHand == 5 || dealerHand == 6)){
+            correctReason = `Split all pairs against 5s and 6s`;
+        }
+        else{
+            correctReason = `Just hit to improve`;
+        }
+        return correctReason;
+    }
+
+    function checkAnswers(dealerHand, playerCardA, playerCardB) {
+            let correctAction = ``;
+            let handTotal = calculateTotal(playerCardA, playerCardB);
+            if(handTotal>19){
+                correctAction = `stand`;
+            }
+            else if(playerCardA != 'A' && playerCardB !='A' && handTotal > 16){
+                correctAction = 'stand';
+            }
+            else if(handTotal == 11 ){
+                correctAction = `double`;
+            }
+            else if(playerCardA == playerCardB && playerCardA == 'A'){
+                correctAction = `split`;
+            }
+            else if(handTotal == 10 && dealerHand < 10){
+                correctAction = `double`;
+            }
+            else if(handTotal == 11){
+                correctAction = `double`;
+            }
+            else if(handTotal == 9 && dealerHand < 7 && dealerHand > 2){
+                correctAction = `double`;
+            }
+            else if(playerCardA == playerCardB && handTotal < 20){
+                if(dealerHand == 5 || dealerHand == 6 || dealerHand == 4){
+                    if(handTotal == 8 && dealerHand == 4){
+                        correctAction = `hit`;
+                    }
+                    else{
+                        correctAction = `split`;
+                    }
+                }
+                else if(playerCardA == 4 && playerCardB == 4){
+                    correctAction = `hit`;
+                }
+                else if(playerCardA == 6 && playerCardB == 6){
+                    if(dealerHand > 1 && dealerHand < 7){
+                        correctAction = `split`;
+                    }
+                    else{
+                        correctAction = `hit`;
+                    }
+                }
+                else if(playerCardA == 7 && playerCardB == 7){
+                    if(dealerHand < 8){
+                        correctAction = `split`;
+                    }
+                    else{
+                        correctAction = `hit`;
+                    }                
+                }
+                else if(playerCardA == 8 && playerCardB == 8){
+                    correctAction = `split`;
+                }
+                else if(playerCardA == 9 && playerCardB == 9){
+                    if(dealerHand != 8){
+                        correctAction = `split`;
+                    }
+                    else{
+                        correctAction = `stand`;
+                    }
+                }
+                else if(playerCardA == 3 && playerCardB == 3){
+                    if(dealerHand < 8){
+                        correctAction = `split`;
+                    }
+                    else{
+                        correctAction = `hit`;
+                    }                
+                }
+                else if(playerCardA == 2 && playerCardB == 2){
+                    if(dealerHand < 8){
+                        correctAction = `split`;
+                    }
+                    else{
+                        correctAction = `hit`;
+                    }                
+                }
+            }
+
+            else if(playerCardA == 'A' || playerCardB == 'A'){
+                if(dealerHand == 6 || dealerHand == 5){
+                    correctAction = 'double';
+                }
+                else if(dealerHand == 4 && handTotal <19 && handTotal > 14){
+                    correctAction = 'double';
+                }
+                else if(dealerHand == 3 && handTotal <19 && handTotal > 15){
+                    correctAction = 'double';
+                }
+                else if(handTotal == 18 && (dealerHand==2 || 8 || 7)){
+                    correctAction = 'stand';
+                }
+
+                else if((handTotal== 12 || handTotal == 13) && (dealerHand == 2 || dealerHand == 3)){
+                    correctAction = 'hit';
+                }
+                else{
+                    correctAction = 'hit';
+                }
+
+            }
+
+            else if(handTotal > 0 && handTotal < 10){
+                correctAction = `hit`;
+            }
+
+            else if(dealerHand > 6 || dealerHand == 'K'|| dealerHand == 'Q'|| dealerHand == 'J'|| dealerHand == 10|| dealerHand == 'A'){
+                correctAction = `hit`;
+            }
+
+            else if(handTotal < 10 && dealerHand < 7){
+                correctAction = `hit`;
+            }
+
+            else if(dealerHand > 16){
+                correctAction = `hit`;
+            }
+
+            return correctAction;
+    }
+
+    function calculateTotal(cardA, cardB) {
+    let total = 0;
+    if (cardA == 'A') {
+        total += 11;
+    }
+    else if (cardA == 'J' || cardA == 'Q' || cardA == 'K') {
+        total += 10;
+    } else {
+        total += Number(cardA);
+    }
+    if (cardB == 'A') {
+        if (total + 11 > 21) {
+            total += 1;
+        } else {
+            total += 11;
+        }
+    } else if (cardB == 'J' || cardB == 'Q' || cardB == 'K') {
+        total += 10;
+    } else {
+        total += Number(cardB);
+    }
+    return total;
+}
+
+  </script>
+</body>
