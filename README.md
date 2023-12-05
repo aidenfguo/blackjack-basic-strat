@@ -1,4 +1,4 @@
-The content below is an example project proposal / requirements document. Replace the text below the lines marked "__TODO__" with details specific to your project. Remove the "TODO" lines.
+The content below is an example project proposal / requirements document. Replace the text below the lines marked "**TODO**" with details specific to your project. Remove the "TODO" lines.
 
 # Blackjack Solver
 
@@ -12,19 +12,16 @@ Welcome to your personal Blackjack Solver, a simple application designed to "sol
 
 The application will store Hands, Practice Status and Reasons
 
-* each hand will have to opportunity to be "practiced" via the Practice page
-* reasons will be given per input, then stored with the hand history
+- each hand will have to opportunity to be "practiced" via the Practice page
+- reasons will be given per input, then stored with the hand history
 
 Hand Example:
 
 ```javascript
 {
   dealerHand: 6,
-  playerHand: "A7",
-  value: 18,
-  soft: true,
-  action: "double",
-  reason: "Soft hands from A2 - A8 are always a double facing a dealer 6"
+  playerCardA: "A",
+  playerCardB: 7,
 }
 ```
 
@@ -40,8 +37,7 @@ Hand History Example with Embedded Items:
 }
 ```
 
-
-## [Link to Commented First Draft Schema](db.mjs) 
+## [Link to Commented First Draft Schema](db.mjs)
 
 ## Wireframes
 
@@ -70,22 +66,20 @@ Hand History Example with Embedded Items:
 
 ## Research Topics
 
-* (6 points) React Front-end Framework
-    * I'm going to be using react for front-end framework
-    * Will be using reactive elements to create animations and cards
-* (3 points) Use dotenv for Config Management
-    * I will use dotenv to manage and build my application
-    * Will use dotenv to load these variables into your application's environment.
-* (1 point) Deck of Cards API
-    * https://www.deckofcardsapi.com/
-    * Use this API for card images, shuffling, and dealing
+- (6 points) React Front-end Framework
+  - I'm going to be using react for front-end framework
+  - Will be using reactive elements to create animations and cards
+- (3 points) Use dotenv for Config Management
+  - I will use dotenv to manage and build my application
+  - Will use dotenv to load these variables into your application's environment.
+- (1 point) Deck of Cards API
+  - https://www.deckofcardsapi.com/
+  - Use this API for card images, shuffling, and dealing
 
 10 points total out of 8 required points
 
-
-## [Link to Initial Main Project File](app.mjs) 
+## [Link to Initial Main Project File](app.mjs)
 
 ## Annotations / References Used
 
 1. [Deck of Cards API](https://www.deckofcardsapi.com/) - (https://github.com/crobertsbmw/deckofcards)
-
