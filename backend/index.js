@@ -26,10 +26,10 @@ app.set('views',__dirname + '/views');
 app.use(express.static(__dirname + "/public"));
 //app.use('/styles', express.static(path.join(__dirname, 'styles', 'styles')));
 //console.log(path.join(__dirname, 'styles'));
-// app.get('/css/styles.css', (req, res) => {
-//     res.setHeader('Content-Type', 'text/css');
-//     res.sendFile(__dirname + '/public/css/styles.css');
-//   });
+app.get('/css/styles.css', (req, res) => {
+    res.setHeader('Content-Type', 'text/css');
+    res.sendFile(__dirname + '/public/css/styles.css');
+  });
 
 
 
@@ -59,7 +59,7 @@ app.get('/handHistory/addHand', (req,res)=>{
 
 app.get('/handHistory/test', (req,res) => {
     Hand.find().then((hand)=>{
-        const handsJson = JSON.stringify(hands);
+        //const handsJson = JSON.stringify(hand);
         res.render("test", {Hands: hand});
     });
 });
