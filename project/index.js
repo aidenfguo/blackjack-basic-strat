@@ -17,13 +17,9 @@ app.set('view engine', 'hbs');
 
 //const __dirname = "/backend/views";
 //console.log(__dirname);
-app.set('views',__dirname + '/views');
+app.set('views', path.join(__dirname, 'project', 'views'));
 app.use(express.static(__dirname + "/public"));
 
-
-// app.use(basicAuth({
-//     users: { 'admin': 'supersecret' }
-// }));
 
 const users = {
     'admin': 'password123',
