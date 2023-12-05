@@ -59,7 +59,6 @@ app.get('/handHistory/addHand', (req,res)=>{
 
 app.get('/handHistory/test', (req,res) => {
     Hand.find().then((hand)=>{
-        //const handsJson = JSON.stringify(hand);
         res.render("test", {Hands: hand});
     });
 });
