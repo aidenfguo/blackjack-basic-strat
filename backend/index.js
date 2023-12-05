@@ -1,6 +1,6 @@
 import express from "express";
 import mongoose, { mongo } from "mongoose";
-import {Hand, madeHand} from './db.mjs';
+import {Hand} from './db.mjs';
 import handRoute from './routes/handRoute.js';
 import './config.js'
 import cors from 'cors';
@@ -29,13 +29,10 @@ app.get('/css/styles.css', (req, res) => {
   });
 
 
-
 app.get('/', async (req, res) => {
     try {
-        const hand = await Hand.find();
-        const madeHand = await madeHand.find();
-        
-        res.render("home", { Hands: hand, MadeHands: madeHand });
+        const hand = await Hand.find();        
+        res.render("home", { Hands: hand });
     } catch (error) {
         console.log(error.message);
         res.status(500).send({ message: error.message });
