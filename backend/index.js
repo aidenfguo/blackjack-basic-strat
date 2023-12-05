@@ -66,8 +66,6 @@ app.get('/handHistory/solutions', (req,res) => {
     });
 });
 
-//app.use(cors());
-
 app.use(cors({
     origin: ["https://deploy-mern-1whq.vercel.app"],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
@@ -113,13 +111,9 @@ app.post('/handHistory/test', async (req, res) => {
             message: 'Hand History Invalid',
         });
     }
-
-    // const newHand = new Hand(req.body)
-    // console.log("Inputted hand", newHand);
-    // const savedHand = await newHand.save();
     return res.redirect('/handHistory/test');
 }catch(error){
-    console.log(error.message);
+    console.log("error HERE!");
     response.status(500).send({message: error.message});
 }
 });
