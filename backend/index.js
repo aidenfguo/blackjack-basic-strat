@@ -60,6 +60,11 @@ app.get('/handHistory/test', (req,res) => {
     });
 });
 
+app.get('/handHistory/solutions', (req,res) => {
+    Hand.find().then((hand)=>{
+        res.render("solutions", {Hands: hand});
+    });
+});
 
 //app.use(cors());
 
@@ -78,10 +83,6 @@ app.post('/', async (req, res) => {
             message: 'Hand History Invalid',
         });
     }
-
-    // const newHand = new Hand(req.body)
-    // console.log("Inputted hand", newHand);
-    // const savedHand = await newHand.save();
     return res.redirect('/');
 }catch(error){
     console.log(error.message);
@@ -117,6 +118,24 @@ app.post('/handHistory/test', async (req, res) => {
     // console.log("Inputted hand", newHand);
     // const savedHand = await newHand.save();
     return res.redirect('/handHistory/test');
+}catch(error){
+    console.log(error.message);
+    response.status(500).send({message: error.message});
+}
+});
+
+app.post('/handHistory/solutions', async (req, res) => {
+    try{
+        if(!req.body.dealerHand){ 
+            return res.status(400).send({
+            message: 'Hand History Invalid',
+        });
+    }
+
+    // const newHand = new Hand(req.body)
+    // console.log("Inputted hand", newHand);
+    // const savedHand = await newHand.save();
+    return res.redirect('/handHistory/solutions');
 }catch(error){
     console.log(error.message);
     response.status(500).send({message: error.message});

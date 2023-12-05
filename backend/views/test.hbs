@@ -156,6 +156,14 @@
 
             }
 
+            else if(handTotal > 0 && handTotal < 10){
+                correctAction = `hit`;
+            }
+
+            else if(dealerHand < 7){
+                correctAction = `hit`;
+            }
+
             if(selectedAction === correctAction){
                 display = 'Correct!';
             }
