@@ -15,19 +15,27 @@ import path, { dirname } from 'path';
 export const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 app.set('view engine', 'hbs');
 
+//const __dirname = "/backend/views";
+//console.log(__dirname);
 app.set('views',__dirname + '/views');
 app.use(express.static(__dirname + "/public"));
+
+
+// app.use(basicAuth({
+//     users: { 'admin': 'supersecret' }
+// }));
 
 const users = {
     'admin': 'password123',
     'guest': 'blackjack',
-  };
-
+};
+    
 app.use(basicAuth({
     users: users,
-    challenge: true, 
+    challenge: true,
     unauthorizedResponse: 'Unauthorized',
-}));
+    clearUnauthorizedResponse: true,
+  }));
 
 
 app.get('/css/styles.css', (req, res) => {
