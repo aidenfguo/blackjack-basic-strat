@@ -26,10 +26,10 @@ app.set('views',__dirname + '/views');
 app.use(express.static(__dirname + "/public"));
 //app.use('/styles', express.static(path.join(__dirname, 'styles', 'styles')));
 //console.log(path.join(__dirname, 'styles'));
-app.get('/css/styles.css', (req, res) => {
-    res.setHeader('Content-Type', 'text/css');
-    res.sendFile(__dirname + '/public/css/styles.css');
-  });
+// app.get('/css/styles.css', (req, res) => {
+//     res.setHeader('Content-Type', 'text/css');
+//     res.sendFile(__dirname + '/public/css/styles.css');
+//   });
 
 
 
