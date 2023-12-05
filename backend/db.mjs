@@ -8,5 +8,11 @@ const HandSchema = new mongoose.Schema({
     playerCardB: String
 });
 
+const madeHandSchema = new mongoose.Schema({
+    dealerHand: String,
+    playerHand: Number
+});
+
 export const Hand = mongoose.model('Hand', HandSchema);
+export const madeHand = mongoose.model('madeHand', madeHandSchema);
 //const Hand = mongoose.model('Hand');

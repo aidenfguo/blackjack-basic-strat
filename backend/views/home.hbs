@@ -23,5 +23,23 @@
             {{/each}}
         </tbody>
     </table>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Dealer Hand
+                </th>
+                <th>Player Hand Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each madeHands}}
+            <tr>
+                <td>{{this.dealerHand}}</td>
+                <td>{{this.playerHand}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
 </body>
 </html>

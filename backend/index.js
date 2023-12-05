@@ -1,6 +1,6 @@
 import express from "express";
 import mongoose, { mongo } from "mongoose";
-import {Hand} from './db.mjs';
+import {Hand, madeHand} from './db.mjs';
 import handRoute from './routes/handRoute.js';
 import './config.js'
 import cors from 'cors';
@@ -30,12 +30,23 @@ app.get('/css/styles.css', (req, res) => {
 
 
 
-
-app.get('/',(req, res) => {
-    Hand.find().then((hand)=>{
-        res.render("home", {Hands: hand});
-    })
+app.get('/', async (req, res) => {
+    try {
+        const hand = await Hand.find();
+        const madeHand = await madeHand.find();
+        
+        res.render("home", { Hands: hand, MadeHands: madeHand });
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).send({ message: error.message });
+    }
 });
+
+// app.get('/',(req, res) => {
+//     Hand.find().then((hand)=>{
+//         res.render("home", {Hands: hand});
+//     })
+// });
 
 
 app.get('/handHistory/addHand', (req,res)=>{
@@ -45,7 +56,7 @@ app.get('/handHistory/addHand', (req,res)=>{
   app.post('/handHistory/addHand', async (req, res) => {
     
     const newHand = new Hand(req.body);
-    const savedReview = await newHand.save();
+    await newHand.save();
     res.redirect('/');
   });
 
