@@ -22,6 +22,14 @@ const users = {
     'admin': 'password123',
     'guest': 'blackjack',
 };
+
+app.use(cors({
+    origin: ["https://deploy-mern-1whq.vercel.app"],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type'],
+    credentials: true
+    })
+);
     
 app.use(basicAuth({
     users: users,
@@ -70,13 +78,7 @@ app.get('/handHistory/solutions', (req,res) => {
     });
 });
 
-app.use(cors({
-    origin: ["https://deploy-mern-1whq.vercel.app"],
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type'],
-    credentials: true
-    })
-);
+
 
 app.post('/', async (req, res) => {
     try{
