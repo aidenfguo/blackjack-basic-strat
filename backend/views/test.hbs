@@ -160,7 +160,11 @@
                 correctAction = `hit`;
             }
 
-            else if(dealerHand < 7){
+            else if(handTotal < 10 && dealerHand < 7){
+                correctAction = `hit`;
+            }
+
+            else if(dealerHand > 16){
                 correctAction = `hit`;
             }
 

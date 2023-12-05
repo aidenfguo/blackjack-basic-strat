@@ -21,8 +21,8 @@ app.set('view engine', 'hbs');
 //console.log(__dirname);
 app.set('views',__dirname + '/views');
 app.use(express.static(__dirname + "/public"));
-//app.use('/styles', express.static(path.join(__dirname, 'styles', 'styles')));
-//console.log(path.join(__dirname, 'styles'));
+
+
 app.get('/css/styles.css', (req, res) => {
     res.setHeader('Content-Type', 'text/css');
     res.sendFile(__dirname + '/public/css/styles.css');
@@ -32,15 +32,11 @@ app.get('/css/styles.css', (req, res) => {
 
 
 app.get('/',(req, res) => {
-    //console.log(__dirname);
     Hand.find().then((hand)=>{
         res.render("home", {Hands: hand});
     })
-    //res.render("home");
-
 });
 
-//app.use('/handHistory', handRoute);
 
 app.get('/handHistory/addHand', (req,res)=>{
     res.render('addHand');
@@ -49,7 +45,6 @@ app.get('/handHistory/addHand', (req,res)=>{
   app.post('/handHistory/addHand', async (req, res) => {
     
     const newHand = new Hand(req.body);
-    //console.log(newHand);
     const savedReview = await newHand.save();
     res.redirect('/');
   });
@@ -125,10 +120,6 @@ app.post('/handHistory/solutions', async (req, res) => {
             message: 'Hand History Invalid',
         });
     }
-
-    // const newHand = new Hand(req.body)
-    // console.log("Inputted hand", newHand);
-    // const savedHand = await newHand.save();
     return res.redirect('/handHistory/solutions');
 }catch(error){
     console.log(error.message);
